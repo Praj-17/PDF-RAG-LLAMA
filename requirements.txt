@@ -1,0 +1,9 @@
+PyMuPDF
+langchain
+openai
+python-dotenv
+langchain_community
+pdfplumber
+PyPDF4
+chromadb
+langchain_openai
