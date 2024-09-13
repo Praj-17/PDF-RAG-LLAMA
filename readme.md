@@ -1,52 +1,87 @@
-# RAG-Based Chat with PDF Application
+# RAG-Based Chat Application with PDF Processing
 
 ## Overview
-This application uses the Retrieval Augmented Generation (RAG) model to enable chatting with the content of PDF documents. It extracts text from PDFs, generates embeddings, and stores them in a vector store. The RAG model then retrieves relevant passages from the vector store to generate answers to user questions.
+This application leverages Retrieval Augmented Generation (RAG) to enable interactive querying of PDF documents. It extracts text and metadata from PDFs, cleans and processes the text, and stores it in a vector database. The application utilizes a language model to generate responses based on the retrieved content, allowing users to ask questions and receive informative answers.
 
 ## Architecture
-The application consists of the following main components:
+The application consists of the following key components:
 
-1. **PDF Text Extraction**: Uses PyMuPDF and pdfplumber to extract text from PDF files, handling encrypted PDFs and extracting metadata like title, author, and creation date.
+1. **PDF Processing**: 
+   - **Text Extraction**: Utilizes `pdfplumber` and `PyPDF4` to extract text from PDF files, handling page-wise extraction and metadata retrieval.
+   - **Text Cleaning**: Implements functions to clean the extracted text by merging hyphenated words, fixing newlines, and removing excessive whitespace.
 
-2. **Text Cleaning and Ingestion Pipeline**: Cleans the extracted text using functions like merging hyphenated words, fixing newlines, and removing multiple newlines. It then splits the text into chunks and converts them to LangChain Documents with metadata. Finally, it ingests the documents into a Chroma vector store.
+2. **Document Ingestion**:
+   - Converts cleaned text into `Document` objects from the LangChain library, which include metadata such as page numbers and source information.
+   - Stores the documents in a Chroma vector store, allowing for efficient retrieval.
 
-3. **Chat Model and Retriever**: Uses the LangChain library to create a RetrievalQA chain with a custom MyVectorStoreRetriever. The retriever uses the Chroma vector store to find relevant passages based on a similarity score threshold and a specified number of top results.
+3. **Retrieval Mechanism**:
+   - Implements a custom retriever that uses similarity search to find relevant documents based on user queries.
+   - Configurable parameters allow for adjusting the number of top documents to retrieve and the similarity score threshold.
 
-4. **Generative Response Creation**: The RAG model generates answers to user questions by combining information from the retrieved passages. It appends the page numbers of the relevant passages to the generated answer.
+4. **Generative Response Creation**:
+   - Utilizes the OpenAI language model to generate answers based on the retrieved documents.
+   - Combines the retrieved context with the user’s query to create coherent and relevant responses.
 
-## Retrieval Approach
-The retrieval process works as follows:
+## Approach to Retrieval
+The retrieval process follows these steps:
 
-1. The user provides a question or query.
-2. The custom MyVectorStoreRetriever uses the Chroma vector store to find the most relevant passages based on the similarity score threshold and the specified number of top results.
-3. The retrieved passages are used as context to generate an answer to the user's question using the RAG model.
-4. The generated answer is returned along with the page numbers of the relevant passages.
+1. **User Query**: The user submits a question related to the content of the PDF.
+2. **Similarity Search**: The application uses the custom retriever to perform a similarity search in the Chroma vector store, retrieving the top documents that are most relevant to the query.
+3. **Response Generation**: The retrieved documents are passed to the language model, which generates a response based on the context provided by the documents.
+4. **Output**: The application returns the generated answer along with the page numbers of the documents used to formulate the response.
 
 ## Usage
 To use the application, follow these steps:
 
-1. Install the required libraries using pip: `pip install -r requirements.txt`
-2. Set the necessary environment variables, such as the Chroma vector store parameters and the OpenAI API key in the `example.env` file. Rename the file `example.env` to `.env`
-3. Ingest PDF files into the vector store using the `ingest_new_file` function.
-4. Initialize the `Chat` class and use the `chat` method to ask questions and retrieve answers.
+1. **Install Required Libraries**: Ensure you have the necessary libraries installed by running:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Example usage:
+2. **Set Up Environment Variables**:
+   - Create a file named `example.env` in the root directory of your project.
+   - Add your DeepInfra API key to the `example.env` file as follows:
+     ```
+     DEEPINFRA_API_KEY=your_deepinfra_api_key
+     ```
+   - Rename `example.env` to `.env` to load the environment variables correctly.
 
+3. **Ingest PDF Files**: Use the `ingest_new_file` function to process and store a PDF document.
+   
+4. **Initialize the Chat Model**: Create an instance of the `Chat` class to prepare for querying.
+
+5. **Ask Questions**: Use the `chat` method to submit your queries and receive answers.
+
+### Example Usage
 ```python
-chat = Chat(collection_name="my_collection")
-ingest_new_file("path/to/pdf_file.pdf", collection_name="my_collection")
-question = "What are some usage of samples in biomedical research?"
-answer, relevant_pages = chat.chat(question)
-print(answer)
-print(relevant_pages)
+if __name__ == "__main__":
+    # Load environment variables
+    load_dotenv()
+
+    # Specify the collection name
+    collection_name = "Praj"
+
+    # Ingest a new PDF file into the vector store
+    ingest_new_file("path/to/your/pdf_file.pdf", collection_name)
+
+    # Initialize the chat model
+    chat = Chat(collection_name=collection_name)
+
+    # Define your question
+    question = "What are some usages of samples in biomedical research and laboratory practices?"
+
+    # Get the answer and source document texts
+    answer, text_samples = chat.chat(question)
+
+    # Print the answer and source documents
+    print("Answer:", answer)
+    print("\nSource Documents:")
+    for idx, text in enumerate(text_samples):
+        print(f"\n--- Document {idx + 1} ---\n{text}")
 ```
 
-This code initializes the `Chat` class, ingests a PDF file into the vector store, asks a question, and prints the generated answer along with the relevant page numbers.
-
-## Limitations and Future Improvements
-- The current implementation uses a fixed similarity score threshold and number of top results for retrieval. Dynamically adjusting these parameters based on the quality of the retrieved passages could improve the accuracy of the generated answers.
-- Handling large PDF files efficiently, such as by processing them in batches or using incremental indexing, could improve the scalability of the application.
-- Incorporating user feedback to fine-tune the RAG model and improve its performance on specific domains or types of questions could enhance the overall user experience.
-
 ## Conclusion
-This RAG-based chat application demonstrates how to leverage the power of retrieval-augmented generation to enable interactive conversations with the content of PDF documents. By combining text extraction, embedding generation, vector store indexing, and generative language modeling, the application provides a flexible and extensible platform for knowledge-based question answering.
+This RAG-based chat application effectively combines PDF processing, text cleaning, and retrieval-augmented generation to provide an interactive platform for querying document content. By leveraging advanced language models and efficient retrieval mechanisms, users can obtain precise and contextually relevant answers to their questions.
+
+Citations:
+[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/30051062/dc00c957-061c-4e7c-a7d5-332053404fa1/paste.txt
