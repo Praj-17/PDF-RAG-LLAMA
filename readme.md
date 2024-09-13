@@ -1,3 +1,5 @@
+# Notebook here
+Find the collab notebook [here](https://colab.research.google.com/drive/1mCsG-fxhHmQtrZQjit0DfG9c_XoTT-At?usp=sharing).
 # Documentation for PDF Processing and Chat Model Architecture
 
 This documentation outlines the architecture, approach to retrieval, and the generation of responses in the chat model. It also provides setup instructions for running the application.
@@ -65,3 +67,7 @@ To set up the application, follow these steps:
 ## Conclusion
 
 This documentation provides a comprehensive overview of the model architecture, retrieval approach, and setup instructions necessary to run the PDF processing and chat model application. By following the instructions, you can successfully set up and interact with the model to gain insights from your PDF documents.
+
+## References
+
+Find the collab notebook [here](https://colab.research.google.com/drive/1mCsG-fxhHmQtrZQjit0DfG9c_XoTT-At?usp=sharing).
