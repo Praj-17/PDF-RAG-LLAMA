@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 import pdfplumber
 import PyPDF4
 
+import warnings
 # LangChain components
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.docstore.document import Document
@@ -18,6 +19,8 @@ from langchain_community.chat_models import ChatOpenAI
 
 # Load environment variables
 load_dotenv()
+# Suppress all warnings
+warnings.filterwarnings("ignore")
 
 def get_date():
     """Returns the current date as a string."""
