@@ -182,52 +182,38 @@ if __name__ == "__main__":
     # Load environment variables
     load_dotenv()
 
-    # # Specify the collection name
-    # collection_name = "Praj"
+    # Specify the collection name
+    collection_name = "Praj"
 
-    # # Ingest a new PDF file into the vector store
-    # # ingest_new_file(r"Data\IARC Sci Pub 163_Chapter 3.pdf", collection_name)
+    # Ingest a new PDF file into the vector store
+    ingest_new_file(r"Data\IARC Sci Pub 163_Chapter 3.pdf", collection_name)
 
-    # # Initialize the chat model
-    # chat = Chat(collection_name=collection_name)
-
-    # # Chat history can be maintained across multiple interactions
-    # chat_history = []
 
     # # Define your question
-    # question = "What are some usages of samples in biomedical research and laboratory practices?"
+    question = "What are some usages of samples in biomedical research and laboratory practices?"
+    answer = get_answer(question, collection_name=collection_name)
 
-    # # Get the answer and source document texts
-    # answer, text_samples = chat.chat(question=question, chat_history=chat_history)
 
-    # # Update chat history if needed
-    # # chat_history.append({"question": question, "answer": answer})
+    # Sample Queries
+#     questions = [
+#     "What are the freezers used for?",
+#     "Where are the samples stored?",
+#     "Generally, what are the samples about?",
+#     "What are some uses of samples in biomedical research and laboratory practices?",
+#     "What are the parameters under which the samples are stored?",
+#     "List down some types of specimens.",
+#     "List down all the types and definitions of specimens you know.",
+#     "What are some ways to collect urine?"
+# ]
+#     answers = []
+#     for question in questions:
+#         print("Question: ", question)
+#         answers.append(get_answer(question, "Praj"))
+#     # Specify the filename
+#     filename = 'questions_answers.json'
 
-    # # Print the answer and source documents
-    # print("--------------------------------------------------------------------------------")
-    # print("Answer:", answer)
-    # print("\nSource Documents:")
-    # for idx, text in enumerate(text_samples):
-    #     print(f"\n--- Document {idx + 1} ---\n{text}")
-    questions = [
-    "What are the freezers used for?",
-    "Where are the samples stored?",
-    "Generally, what are the samples about?",
-    "What are some uses of samples in biomedical research and laboratory practices?",
-    "What are the parameters under which the samples are stored?",
-    "List down some types of specimens.",
-    "List down all the types and definitions of specimens you know.",
-    "What are some ways to collect urine?"
-]
-    answers = []
-    for question in questions:
-        print("Question: ", question)
-        answers.append(get_answer(question, "Praj"))
-    # Specify the filename
-    filename = 'questions_answers.json'
+#         # Write the list of dictionaries to a JSON file
+#     with open(filename, 'w') as json_file:
+#         json.dump(answers, json_file, indent=4)
 
-        # Write the list of dictionaries to a JSON file
-    with open(filename, 'w') as json_file:
-        json.dump(answers, json_file, indent=4)
-
-    print(f"Data successfully written to {filename}")
+#     print(f"Data successfully written to {filename}")
