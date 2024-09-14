@@ -50,7 +50,7 @@ with st.sidebar:
     elif st.session_state.file_ingested:
         st.info("File already ingested. Ready to ask questions.")
 
-tab_chat, tab_faqs, tab_samples = st.tabs(["Chat", "FAQs", "Sample Queries"])
+tab_chat, tab_faqs, tab_samples, tab_contact = st.tabs(["Chat", "FAQs", "Sample Queries", "📞 Contact"])
 
 with tab_chat:
     for message in st.session_state.messages:
@@ -58,16 +58,16 @@ with tab_chat:
             st.markdown(message["content"])
             if message["role"] == "assistant" and "documents" in message:
                 if message['documents']:
-                    st.subheader("Relevant Document Segments")
+                    st.subheader("Relevant Document Documents")
                     num_cols = 3
                     cols = st.columns(num_cols)
                     for idx, doc in enumerate(message['documents']):
                         col = cols[idx % num_cols]
                         with col:
-                            with st.expander(f"Segment {idx + 1}"):
+                            with st.expander(f"Document {idx + 1}"):
                                 st.write(doc['text'])
                 else:
-                    st.write("No relevant segments found.")
+                    st.write("No relevant Documents found.")
 
     def response_generator(response):
         for word in response.split():
@@ -140,7 +140,7 @@ with tab_faqs:
     faqs = [
         {"question": "How do I upload a PDF file?", "answer": "Use the file uploader in the sidebar to upload your PDF."},
         {"question": "How do I ask a question about the PDF?", "answer": "Type your question in the chat input at the bottom of the Chat tab."},
-        {"question": "How do I delete all the ingested Data?", "answer": "You will have to delete the folder `chroma` manually from the code-base"},
+        {"question": "How do I delete all the ingested Data?", "answer": "You will have to delete the folder chroma manually from the code-base"},
         {"question": "Why are there multiple collections?", "answer": "It is just an optional folder incase you want to maintain files in different collections"},
     ]
 
@@ -186,3 +186,24 @@ with tab_samples:
                 st.write("No relevant segments found.")
     else:
         st.info("No sample queries to display. Please ensure the JSON file path is correct and the file is properly formatted.")
+
+with tab_contact:
+    st.header("📞 Contact Information")
+    st.write("Feel free to reach out through any of the following platforms:")
+
+    st.markdown("**📧 Email**")
+    if st.button("pwaykos1@gmail.com"):
+        st.write("mailto:pwaykos1@gmail.com")
+
+    st.markdown("**📱 Phone**")
+    if st.button("7249542810"):
+        st.write("tel:+17249542810")
+
+    st.markdown("**🔗 LinkedIn**")
+    st.markdown("[![LinkedIn](https://img.icons8.com/color/48/000000/linkedin.png)](https://www.linkedin.com/in/prajwal-waykos/)")
+
+    st.markdown("**💻 GitHub**")
+    st.markdown("[![GitHub](https://img.icons8.com/ios-filled/50/000000/github.png)](https://github.com/Praj-17)")
+
+    st.markdown("**📄 My Resume**")
+    st.markdown("[![Resume](https://img.icons8.com/doodle/48/000000/resume.png)](https://drive.google.com/file/d/1OiSCu4e_1R7cawKSU80cr63Cd2-4OVq7/view?usp=drivesdk)")
