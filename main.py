@@ -175,8 +175,7 @@ def get_answer(question, collection_name):
         for idx, text in enumerate(text_samples):
             final_ans['documents'].append({"index":idx, "text": text})
         return final_ans
-
-
+ 
 
 if __name__ == "__main__":
     # Load environment variables
@@ -192,6 +191,7 @@ if __name__ == "__main__":
     # # Define your question
     question = "What are some usages of samples in biomedical research and laboratory practices?"
     answer = get_answer(question, collection_name=collection_name)
+
 
 
     # Sample Queries
