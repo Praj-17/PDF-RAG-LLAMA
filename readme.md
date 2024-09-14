@@ -59,7 +59,7 @@ To set up the application, follow these steps:
 4. **Run the Application**: You can run the application using the command line. Ensure you specify the correct path to your PDF file in the `ingest_new_file` function call.
 
    ```bash
-   python your_script_name.py
+   streamlit run streaming_app.py
    ```
 
 5. **Interact with the Chat Model**: After running the application, you can ask questions based on the ingested PDF content, and the model will provide responses along with relevant source documents.

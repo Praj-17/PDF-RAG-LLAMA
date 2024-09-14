@@ -180,3 +180,7 @@ pyrightconfig.json
 .chroma\
 /chroma/
 \chroma\
+.temp_files/
+.temp_files\
+/temp_files/
+\temp_files\
