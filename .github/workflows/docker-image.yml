@@ -27,3 +27,4 @@ jobs:
           context: .
           push: true
           tags: prajwal1717/interactive-pdf-qna-chatbot:latest
+ 
