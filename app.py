@@ -22,7 +22,7 @@ if "messages" not in st.session_state:
 if "file_ingested" not in st.session_state:
     st.session_state.file_ingested = False
 if "collection_name" not in st.session_state:
-    st.session_state.collection_name = "user_uploaded_docs"
+    st.session_state.collection_name = "default"
 
 with st.sidebar:
     st.header("Upload and Process PDF")
