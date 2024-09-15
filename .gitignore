@@ -184,3 +184,6 @@ pyrightconfig.json
 .temp_files\
 /temp_files/
 \temp_files\
+
+# Docker
+*.log

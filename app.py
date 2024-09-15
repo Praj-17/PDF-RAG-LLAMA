@@ -8,7 +8,13 @@ from main import ingest_new_file, get_answer
 from dotenv import load_dotenv
 load_dotenv()
 
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+openai_api_key = os.getenv("OPENAI_API_KEY")
+
+if not openai_api_key:
+    st.error("OPENAI_API_KEY is not set. Please provide it as an environment variable.")
+    st.stop()
+
+os.environ["OPENAI_API_KEY"] = openai_api_key
 st.title("Interactive PDF Q&A Chatbot")
 
 if "messages" not in st.session_state:
