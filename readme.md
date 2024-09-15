@@ -5,6 +5,11 @@
 
 # Notebook 
 Find the collab notebook [here](https://colab.research.google.com/drive/1mCsG-fxhHmQtrZQjit0DfG9c_XoTT-At?usp=sharing).
+
+# The code is live at
+   ```
+   https://interactive-pdf-qna-chatbot-latest.onrender.com
+   ```
 # Documentation for PDF Processing and Chat Model Architecture
 
 This documentation outlines the architecture, approach to retrieval, and the generation of responses in the chat model. It also provides setup instructions for running the application.
