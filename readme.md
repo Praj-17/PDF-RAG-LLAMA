@@ -34,11 +34,20 @@ The retrieval process involves the following steps:
 
 The generative responses are created by leveraging the capabilities of the `ChatOpenAI` model. The model synthesizes information from the retrieved documents and formulates an answer that is contextually relevant to the user's question. The response is designed to be informative and engaging, providing insights based on the content of the source documents.
 
+### Prerequisites
+
+- [Docker](https://www.docker.com/get-started) installed on your machine.
+- An OpenAI API key. You can obtain one from [OpenAI](https://platform.openai.com/account/api-keys).
+
 ## Setup Instructions
 
 To set up the application, follow these steps:
 
-1. **Clone the Repository**: Clone the repository containing the code to your local machine.
+1. **Clone the Repository**: Clone the repository containing the code to your local machine from the following link
+
+   ```
+   https://github.com/Praj-17/PDF-RAG-LLAMA
+   ```
 
 2. **Install Dependencies**: Ensure you have Python installed, and then install the required libraries using pip:
    ```bash
@@ -48,7 +57,8 @@ To set up the application, follow these steps:
 3. **Create Environment File**:
    - There is an example environment file named `example.env` in the repository. 
    - Rename this file to `.env` and edit it to include your OpenAI API key. The file should look like this:
-     ```plaintext
+
+     ```
      OPENAI_API_KEY=your_openai_api_key
      default_data_directory=path_to_your_data_directory
      search_type=default_search_type  # e.g., 'similarity'
@@ -56,13 +66,20 @@ To set up the application, follow these steps:
      chain_type=default_chain_type  # e.g., 'map_reduce'
      ```
 
-4. **Run the Application**: You can run the application using the command line. Ensure you specify the correct path to your PDF file in the `ingest_new_file` function call.
-
-   ```bash
-   streamlit run streaming_app.py
+4. **Pull The Docker Image**:
    ```
+   docker pull prajwal1717/interactive-pdf-qna-chatbot:latest
+   ```
+5. **Run the Docker image with the `.env` file **:
+   ```
+   docker run -d -p 8501:8501 --env-file .env prajwal1717/interactive-pdf-qna-chatbot:latest
+   ``` 
 
-5. **Interact with the Chat Model**: After running the application, you can ask questions based on the ingested PDF content, and the model will provide responses along with relevant source documents.
+5. **Acess the app**
+
+Open your browser and navigate to http://localhost:8501.
+
+6. **Interact with the Chat Model**: After running the application, you can ask questions based on the ingested PDF content, and the model will provide responses along with relevant source documents.
 
 ## Conclusion
 
