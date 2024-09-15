@@ -1,4 +1,9 @@
-# Notebook here
+
+
+## Note:
+**Please note that I am using my friends laptop for a while since my laptop has been put to repair and hence, the commits that are made are from her github username. However I assure you this is my original work. I am open for any questions related to it**
+
+# Notebook 
 Find the collab notebook [here](https://colab.research.google.com/drive/1mCsG-fxhHmQtrZQjit0DfG9c_XoTT-At?usp=sharing).
 # Documentation for PDF Processing and Chat Model Architecture
 
