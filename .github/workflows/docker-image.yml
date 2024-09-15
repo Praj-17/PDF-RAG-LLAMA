@@ -26,4 +26,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: your-dockerhub-username/interactive-pdf-qna-chatbot:latest
+          tags: prajwal1717/interactive-pdf-qna-chatbot:latest
