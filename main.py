@@ -16,7 +16,7 @@ from langchain.chains import RetrievalQA
 from langchain_community.chat_models import ChatOpenAI
 import json
 
-load_dotenv()
+load_dotenv() 
 warnings.filterwarnings("ignore")
 
 def get_date():
