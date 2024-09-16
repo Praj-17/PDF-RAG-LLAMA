@@ -58,13 +58,7 @@ To set up the application, follow these steps:
    ```
    https://github.com/Praj-17/PDF-RAG-LLAMA
    ```
-
-2. **Install Dependencies**: Ensure you have Python installed, and then install the required libraries using pip:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Create Environment File**:
+2. **Create Environment File**:
    - There is an example environment file named `example.env` in the repository. 
    - Rename this file to `.env` and edit it to include your OpenAI API key. The file should look like this:
 
@@ -76,18 +70,18 @@ To set up the application, follow these steps:
      chain_type=default_chain_type  # e.g., 'map_reduce'
      ```
 
-4. **Pull The Docker Image**:
+3. **Pull The Docker Image**:
    ```
    docker pull prajwal1717/interactive-pdf-qna-chatbot:latest
    ```
-5. **Run the Docker image with the `.env` file **:
+4. **Run the Docker image with the `.env` file **:
    ```
    docker run -d -p 8501:8501 --env-file .env prajwal1717/interactive-pdf-qna-chatbot:latest
    ``` 
 
 5. **Acess the app**
 
-Open your browser and navigate to http://localhost:8501.
+   Open your browser and navigate to http://localhost:8501.
 
 6. **Interact with the Chat Model**: After running the application, you can ask questions based on the ingested PDF content, and the model will provide responses along with relevant source documents.
 
