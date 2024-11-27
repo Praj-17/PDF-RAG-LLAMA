@@ -41,7 +41,7 @@ with st.sidebar:
     uploaded_files = st.file_uploader("Upload PDF file(s)", type=["pdf"], accept_multiple_files=True)
     
     if uploaded_files:
-        temp_dir = "temp_files"
+        temp_dir = os.getenv("TEMP_FILE_DIRECTORY")
         os.makedirs(temp_dir, exist_ok=True)
 
         for uploaded_file in uploaded_files:
