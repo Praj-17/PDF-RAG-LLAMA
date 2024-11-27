@@ -4,7 +4,7 @@ import time
 import shutil
 import re
 import json
-from main import ingest_new_file, get_answer
+from src import ingest_new_file, get_answer
 from dotenv import load_dotenv
 
 # Load environment variables and OpenAI API key
@@ -182,7 +182,7 @@ with tab_faqs:
 with tab_samples:
     st.header("Sample Queries")
 
-    json_file_path = "example_queries.json"
+    json_file_path = "src\constants\example_queries.json"
 
     if os.path.exists(json_file_path):
         try:
