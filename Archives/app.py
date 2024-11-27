@@ -1,7 +1,7 @@
 # app.py
 import streamlit as st
 import os
-from main import ingest_new_file, get_answer  # Replace 'your_script_name' with the name of your script
+from Archives.main import ingest_new_file, get_answer  # Replace 'your_script_name' with the name of your script
 from dotenv import load_dotenv
 load_dotenv()
 

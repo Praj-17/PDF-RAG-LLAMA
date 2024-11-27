@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 import time
-import shutil
 import re
 import json
 from src import ingest_new_file, get_answer
