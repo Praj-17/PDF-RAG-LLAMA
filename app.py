@@ -181,7 +181,7 @@ with tab_faqs:
 with tab_samples:
     st.header("Sample Queries")
 
-    json_file_path = "src\constants\example_queries.json"
+    json_file_path = r"src/constants/example_queries.json"
 
     if os.path.exists(json_file_path):
         try:
