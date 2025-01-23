@@ -113,6 +113,16 @@ def ingest_new_file(file_path, collection_name):
         collection_name=collection_name,
         persist_directory=persist_directory,
     )
+    files = []
+    import json
+    for i in document_chunks:
+        f = i.model_dump()
+        files.append(f)
+    
+    with open("document_chunks.json", "w") as f:
+        json.dump(files,f, indent = 4)
+
+
 
 class Chat:
     def __init__(self, collection_name="default_collection"):
